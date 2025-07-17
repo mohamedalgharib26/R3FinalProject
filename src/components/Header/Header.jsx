@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import { Link } from "react-router";
+import { cartContext } from "../../Context/CartContext";
+import CartItems from "../cartItems";
+
 function Header() {
   const logo = "../../../public/logo/logo.svg";
+  const { cart } = useContext(cartContext);
   return (
     <div>
       <header className="header navbar-area">
@@ -138,76 +144,15 @@ function Header() {
                     <div className="cart-items">
                       <a href="javascript:void(0)" className="main-btn">
                         <i className="lni lni-cart" />
-                        <span className="total-items">2</span>
+                        <span className="total-items">{cart.length}</span>
                       </a>
                       {/* Shopping Item */}
                       <div className="shopping-item">
                         <div className="dropdown-cart-header">
-                          <span>2 Items</span>
-                          <a href="cart.html">View Cart</a>
+                          <span> {cart.length} Items</span>
+                          <Link to={"/cart"}>View Cart</Link>
                         </div>
-                        <ul className="shopping-list">
-                          <li>
-                            <a
-                              href="javascript:void(0)"
-                              className="remove"
-                              title="Remove this item"
-                            >
-                              <i className="lni lni-close" />
-                            </a>
-                            <div className="cart-img-head">
-                              <a
-                                className="cart-img"
-                                href="product-details.html"
-                              >
-                                <img
-                                  src="assets/images/header/cart-items/item1.jpg"
-                                  alt="#"
-                                />
-                              </a>
-                            </div>
-                            <div className="content">
-                              <h4>
-                                <a href="product-details.html">
-                                  Apple Watch Series 6
-                                </a>
-                              </h4>
-                              <p className="quantity">
-                                1x - <span className="amount">$99.00</span>
-                              </p>
-                            </div>
-                          </li>
-                          <li>
-                            <a
-                              href="javascript:void(0)"
-                              className="remove"
-                              title="Remove this item"
-                            >
-                              <i className="lni lni-close" />
-                            </a>
-                            <div className="cart-img-head">
-                              <a
-                                className="cart-img"
-                                href="product-details.html"
-                              >
-                                <img
-                                  src="assets/images/header/cart-items/item2.jpg"
-                                  alt="#"
-                                />
-                              </a>
-                            </div>
-                            <div className="content">
-                              <h4>
-                                <a href="product-details.html">
-                                  Wi-Fi Smart Camera
-                                </a>
-                              </h4>
-                              <p className="quantity">
-                                1x - <span className="amount">$35.00</span>
-                              </p>
-                            </div>
-                          </li>
-                        </ul>
+                        <CartItems />
                         <div className="bottom">
                           <div className="total">
                             <span>Total</span>

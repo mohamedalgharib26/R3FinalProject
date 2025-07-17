@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
+import { cartContext } from "../../Context/CartContext";
 
-function Product() {
-  const image = "../../../public/product-1.jpg";
+function Product(props) {
+  const { image, category, price, title, id } = props.product;
+  const { cart, addToCart } = useContext(cartContext);
+  const add = (item) => {
+    addToCart(item);
+  };
   return (
-    <div>
+    <div className="col-lg-3 col-md-6 col-12">
       <div className="single-product">
         <div className="product-image">
-          <img src={image} alt="#" />
-          <div className="button">
-            <a href="product-details.html" className="btn">
+          <img src={image} alt="#" height={350} />
+          <div className="button" onClick={() => add(props.product)}>
+            <button className="btn">
               <i className="lni lni-cart" /> Add to Cart
-            </a>
+            </button>
           </div>
         </div>
         <div className="product-info">
-          <span className="category">Watches</span>
+          <span className="category">{category}</span>
           <h4 className="title">
-            <a href="product-grids.html">Xiaomi Mi Band 5</a>
+            <a href="product-grids.html">{title}</a>
           </h4>
           <ul className="review">
             <li>
@@ -39,7 +44,7 @@ function Product() {
             </li>
           </ul>
           <div className="price">
-            <span>$199.00</span>
+            <span>${price}</span>
           </div>
         </div>
       </div>

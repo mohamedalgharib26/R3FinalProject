@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 
 function ProductsList() {
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async () => {
+    const data = await fetch("https://fakestoreapi.com/products");
+    const res = await data.json();
+    setProducts(res);
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <div>
       <section className="trending-product section" style={{ marginTop: 12 }}>
@@ -19,9 +31,10 @@ function ProductsList() {
             </div>
           </div>
           <div className="row">
-            <div className="col-lg-3 col-md-6 col-12">
-              <Product />
-            </div>
+            {/* */}
+            {products.map((item) => {
+              return <Product key={item.id} product={item} />;
+            })}
           </div>
         </div>
       </section>
