@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import { cartContext } from "../Context/CartContext";
 
 function Cart() {
-  const { cart } = useContext(cartContext);
+  const { cart, remove } = useContext(cartContext);
+
   return (
     <div>
       <div className="shopping-cart section">
@@ -22,7 +23,7 @@ function Cart() {
                   <p>Subtotal</p>
                 </div>
                 <div className="col-lg-1 col-md-2 col-12">
-                  <p>Remove</p>
+                  <p>CategoryId</p>
                 </div>
               </div>
             </div>
@@ -57,9 +58,12 @@ function Cart() {
                       <p>${item.price}</p>
                     </div>
                     <div className="col-lg-1 col-md-2 col-12">
-                      <a className="remove-item" href="javascript:void(0)">
+                      <button
+                        className="remove-item"
+                        onClick={() => remove(item)}
+                      >
                         <i className="lni lni-close" />
-                      </a>
+                      </button>
                     </div>
                   </div>
                 </div>

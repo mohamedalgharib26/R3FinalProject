@@ -4,7 +4,7 @@ import { cartContext } from "../../Context/CartContext";
 import CartItems from "../cartItems";
 
 function Header() {
-  const logo = "../../../public/logo/logo.svg";
+  const logo = "/logo/logo.svg";
   const { cart } = useContext(cartContext);
   return (
     <div>
@@ -90,9 +90,9 @@ function Header() {
             <div className="row align-items-center">
               <div className="col-lg-3 col-md-3 col-7">
                 {/* Start Header Logo */}
-                <a className="navbar-brand" href="index.html">
+                <Link className="navbar-brand" to={"/"}>
                   <img src={logo} alt="Logo" />
-                </a>
+                </Link>
                 {/* End Header Logo */}
               </div>
               <div className="col-lg-5 col-md-7 d-xs-none">
@@ -148,22 +148,30 @@ function Header() {
                       </a>
                       {/* Shopping Item */}
                       <div className="shopping-item">
-                        <div className="dropdown-cart-header">
-                          <span> {cart.length} Items</span>
-                          <Link to={"/cart"}>View Cart</Link>
-                        </div>
-                        <CartItems />
-                        <div className="bottom">
-                          <div className="total">
-                            <span>Total</span>
-                            <span className="total-amount">$134.00</span>
+                        {cart.length < 1 ? (
+                          <div className="alert alert-danger" role="alert">
+                            Please Add items to cart
                           </div>
-                          <div className="button">
-                            <a href="checkout.html" className="btn animate">
-                              Checkout
-                            </a>
+                        ) : (
+                          <div className="">
+                            <div className="dropdown-cart-header">
+                              <span> {cart.length} Items</span>
+                              <Link to={"/cart"}>View Cart</Link>
+                            </div>
+                            <CartItems />
+                            <div className="bottom">
+                              <div className="total">
+                                <span>Total</span>
+                                <span className="total-amount">$134.00</span>
+                              </div>
+                              <div className="button">
+                                <a href="checkout.html" className="btn animate">
+                                  Checkout
+                                </a>
+                              </div>
+                            </div>
                           </div>
-                        </div>
+                        )}
                       </div>
                       {/*/ End Shopping Item */}
                     </div>

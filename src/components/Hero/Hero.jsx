@@ -1,9 +1,9 @@
 import React from "react";
 
 function Hero() {
-  const image1 = "../../../public/hero/slider-bnr.jpg";
-  const image2 = "../../../public/hero/slider-bg1.jpg";
-  const image3 = "../../../public/hero/slider-bg2.jpg";
+  const image1 = "/hero/slider-bnr.jpg";
+  const image2 = "/hero/slider-bg1.jpg";
+  const image3 = "/hero/slider-bg2.jpg";
 
   return (
     <section className="hero-area">
